@@ -10,7 +10,7 @@ Paddle::Paddle()
 	isVertical = true;
 }
 Paddle::Paddle(sf::RenderWindow* win, float X, float Y, float W, float H, int pID, bool isVert)
-	: GameObject(win,X,Y,W,H,true)
+	: GameObject(win, X, Y, W, H, true)
 {
 	paddle.setSize(sf::Vector2f(W, H));
 	paddle.setPosition(sf::Vector2f(X, Y));
@@ -22,7 +22,7 @@ Paddle::Paddle(sf::RenderWindow* win, float X, float Y, float W, float H, int pI
 	isVertical = isVert;
 }
 Paddle::Paddle(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, int pID, bool isVert)
-	: GameObject(win,pos,W,H,true)
+	: GameObject(win, pos, W, H, true)
 {
 	paddle.setSize(sf::Vector2f(W, H));
 	paddle.setPosition(pos);

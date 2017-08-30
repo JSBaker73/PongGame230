@@ -3,10 +3,12 @@
 AIPaddle::AIPaddle()
 {}
 AIPaddle::AIPaddle(sf::RenderWindow* win, float X, float Y, float W, float H, int pID, bool isVert, Ball* theBall)
-	: Paddle(win,X,Y,W,H,pID,isVert)
+	: Paddle(win,X,Y,W,H,pID,isVert),
+	  GameObject(win, X, Y, W, H, true)
 {	ball = theBall;	}
 AIPaddle::AIPaddle(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, int pID, bool isVert, Ball* theBall)
-	: Paddle(win, pos, W, H, pID, isVert)
+	: Paddle(win, pos, W, H, pID, isVert),
+	  GameObject(win, pos, W, H, true)
 {	ball = theBall;	}
 AIPaddle::~AIPaddle()
 {}

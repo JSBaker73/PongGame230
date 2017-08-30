@@ -11,6 +11,7 @@ GameObject::GameObject()
 	width = 0;
 	height = 0;
 	collides = false;
+	toBeDeleted = false;
 }
 GameObject::GameObject(sf::RenderWindow* win, float X, float Y, float W, float H, bool col)
 {
@@ -23,6 +24,7 @@ GameObject::GameObject(sf::RenderWindow* win, float X, float Y, float W, float H
 	width = W;
 	height = H;
 	collides = col;
+	toBeDeleted = false;
 }
 GameObject::GameObject(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, bool col)
 {
@@ -35,6 +37,7 @@ GameObject::GameObject(sf::RenderWindow* win, sf::Vector2f pos, float W, float H
 	width = W;
 	height = H;
 	collides = col;
+	toBeDeleted = false;
 }
 GameObject::GameObject(sf::RenderWindow* win, float X, float Y, float velX, float velY, float W, float H, bool col)
 {
@@ -47,6 +50,7 @@ GameObject::GameObject(sf::RenderWindow* win, float X, float Y, float velX, floa
 	width = W;
 	height = H;
 	collides = col;
+	toBeDeleted = false;
 }
 GameObject::GameObject(sf::RenderWindow* win, sf::Vector2f pos, sf::Vector2f vel, float W, float H, bool col)
 {
@@ -59,15 +63,16 @@ GameObject::GameObject(sf::RenderWindow* win, sf::Vector2f pos, sf::Vector2f vel
 	width = W;
 	height = H;
 	collides = col;
+	toBeDeleted = false;
 }
 GameObject::~GameObject()
 {}
 
-inline sf::Vector2f GameObject::GetPosition()
+sf::Vector2f GameObject::GetPosition()
 {	return position;	}
 void GameObject::SetPosition(sf::Vector2f newPos)
 {	position = newPos;	}
-inline sf::Vector2f GameObject::GetVelocity()
+sf::Vector2f GameObject::GetVelocity()
 {	return velocity;	}
 void GameObject::SetVelocity(sf::Vector2f newVel)
 {	velocity = newVel;	}
@@ -84,11 +89,11 @@ float GameObject::GetWidth()
 {	return width;	}
 float GameObject::getHeight()
 {	return height;	}
-inline bool GameObject::HasCollision()
+bool GameObject::HasCollision()
 {	return collides;	}
 void GameObject::SetCollision(bool newCol)
 {	collides = newCol;	}
-inline bool GameObject::GetToBeDeleted()
+bool GameObject::GetToBeDeleted()
 {	return toBeDeleted;	}
 
 sf::FloatRect GameObject::GetRect(GameObject* obj)

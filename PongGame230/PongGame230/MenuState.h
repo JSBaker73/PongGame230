@@ -2,6 +2,9 @@
 
 #include "AppState.h"
 #include "MenuManager.h"
+
+class PongState;
+
 class MenuState : virtual public AppState
 {
 public:

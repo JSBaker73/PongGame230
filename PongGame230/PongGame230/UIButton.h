@@ -7,6 +7,7 @@ class UIButton : virtual public UIObject
 {
 protected:
 	sf::RectangleShape button;
+	sf::Font font;
 	sf::Text label;
 
 public:

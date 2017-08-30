@@ -19,7 +19,8 @@ protected:
 	std::vector<std::shared_ptr<UIObject>> UIList;
 	sf::Clock clock;
 
-	bool isPlaying;
+	bool started;
+	bool ended;
 public:
 	GameManager();
 	GameManager(sf::RenderWindow* win);
@@ -27,8 +28,10 @@ public:
 
 	virtual void Initialize() = 0;
 	virtual void Start();
+	virtual void End();
 
-	bool StillPlaying();
+	bool HasStarted();
+	bool HasEnded();
 
 	void AddGameObject(std::shared_ptr<GameObject> obj);
 	void RemoveGameObject(int index);

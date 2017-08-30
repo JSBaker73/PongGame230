@@ -17,6 +17,9 @@ public:
 
 	void ReadControls();
 
+	virtual void Hit(GameObject* other)
+	{}
+
 	virtual void Update(float deltaTime);
 };
 

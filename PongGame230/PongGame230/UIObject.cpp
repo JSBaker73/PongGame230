@@ -39,7 +39,7 @@ UIObject::UIObject(sf::RenderWindow* win, sf::Vector2f pos, float W, float H)
 UIObject::~UIObject()
 {}
 
-inline sf::Vector2f UIObject::GetPosition()
+sf::Vector2f UIObject::GetPosition()
 {	return position;	}
 void UIObject::SetPosition(sf::Vector2f newPos)
 {	position = newPos;	}
@@ -58,7 +58,7 @@ float UIObject::GetHeight()
 {	return height;	}
 bool UIObject::GetClickable()
 {	return clickable;	}
-inline bool UIObject::GetToBeDeleted()
+bool UIObject::GetToBeDeleted()
 {	return toBeDeleted;	}
 sf::FloatRect UIObject::GetRect(UIObject* obj)
 {

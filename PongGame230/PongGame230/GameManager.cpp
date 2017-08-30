@@ -3,23 +3,35 @@
 #include "UIObject.h"
 
 GameManager::GameManager()
-{	isPlaying = false;	}
+{
+	started = false;
+	ended = false;
+}
 GameManager::GameManager(sf::RenderWindow* win)
 {
 	window = win;
-	isPlaying = false;
+	started = false;
+	ended = false;
 }
 GameManager::~GameManager()
-{}
+{
+	GOList.clear();
+	UIList.clear();
+	int a = 0;
+}
 
 void GameManager::Start()
 {
 	clock.restart();
-	isPlaying = true;
+	started = true;
 }
+void GameManager::End()
+{	ended = true;	}
 
-bool GameManager::StillPlaying()
-{	return isPlaying;	}
+bool GameManager::HasStarted()
+{	return started;	}
+bool GameManager::HasEnded()
+{	return ended;	}
 
 void GameManager::AddGameObject(std::shared_ptr<GameObject> obj)
 {	GOList.push_back(obj);	}
@@ -38,13 +50,17 @@ void GameManager::Update()
 		int index = std::distance(UIList.begin(), it);
 		UIList.at(index)->Update(deltaTime);
 		if (UIList.at(index)->GetToBeDeleted())
-		{	this->RemoveUIObject(index);	}
+		{	it = UIList.erase(it);	}
+		else
+		{	++it;	}
 	}
-	for (auto it = GOList.begin(); it != GOList.end(); ++it) {
+	for (auto it = GOList.begin(); it != GOList.end(); ) {
 		int index = std::distance(GOList.begin(), it);
 		GOList.at(index)->Update(deltaTime);
 		if (GOList.at(index)->GetToBeDeleted())
-		{	this->RemoveGameObject(index);	}
+		{	it = GOList.erase(it);	}
+		else
+		{	++it;	}
 	}
 }
 void GameManager::Draw()

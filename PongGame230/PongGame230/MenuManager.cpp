@@ -6,7 +6,9 @@ MenuManager::MenuManager(sf::RenderWindow* win)
 	: GameManager(win)
 {}
 MenuManager::~MenuManager()
-{}
+{
+	int a = 0;
+}
 
 void MenuManager::Initialize()
 {

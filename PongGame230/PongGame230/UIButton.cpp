@@ -21,7 +21,12 @@ UIButton::UIButton(sf::RenderWindow* win, float X, float Y, float W, float H, st
 	button.setPosition(sf::Vector2f(X, Y));
 	button.setFillColor(sf::Color::White);
 
+	font.loadFromFile("Resources/sansation.ttf");
+
 	label.setString(text);
+	label.setFont(font);
+	label.setStyle(sf::Text::Regular);
+	label.setCharacterSize(40);
 	label.setFillColor(sf::Color::Black);
 	label.setPosition(sf::Vector2f(X, Y));
 }
@@ -34,12 +39,19 @@ UIButton::UIButton(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, st
 	button.setPosition(pos);
 	button.setFillColor(sf::Color::White);
 
+	font.loadFromFile("Resources/sansation.ttf");
+
 	label.setString(text);
+	label.setFont(font);
+	label.setStyle(sf::Text::Regular);
+	label.setCharacterSize(40);
 	label.setFillColor(sf::Color::Black);
 	label.setPosition(pos);
 }
 UIButton::~UIButton()
-{}
+{
+	int a = 0;
+}
 
 void UIButton::SetPosition(sf::Vector2f newPos)
 {

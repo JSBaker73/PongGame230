@@ -17,6 +17,7 @@ public:
 	~Ball();
 
 	float GetStartSpeed();
+	bool IsActive();
 
 	void Start(float angle);
 	void CheckHit(GameObject* obj);
