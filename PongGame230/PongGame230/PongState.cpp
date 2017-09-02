@@ -6,8 +6,14 @@ PongState::PongState()
 PongState::PongState(sf::RenderWindow* win, int mode)
 	: AppState(win)
 {
-	GM = std::make_shared<PongManager>(win,this);
+	GM = std::make_shared<PongManager>(win, this);
 	currentMode = static_cast<GameMode>(mode);
+}
+PongState::PongState(sf::RenderWindow* win, GameMode mode)
+	: AppState(win)
+{
+	GM = std::make_shared<PongManager>(win, this);
+	currentMode = mode;
 }
 PongState::~PongState()
 {}
@@ -19,11 +25,14 @@ AppState* PongState::UpdateState(sf::Event event)
 {
 	if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Space))
 	{
-		if (!GM->HasStarted())
+		if (GM->HasEnded())
+		{	return new PongState(window, currentMode);	}
+		else if (!GM->HasStarted())
 		{	GM->Start();	}
-		else if (dynamic_cast<PongManager*>(GM.get())->GetBallActive())
-		{	dynamic_cast<PongManager*>(GM.get())->ShootBall();	}
-		else if (GM->HasEnded())
+	}
+	else if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::BackSpace))
+	{
+		if (GM->HasEnded() || !GM->HasStarted())
 		{	return new MenuState(window);	}
 	}
 

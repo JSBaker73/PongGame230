@@ -6,18 +6,21 @@ GameManager::GameManager()
 {
 	started = false;
 	ended = false;
+	GODeleted = false;
+	UIDeleted = false;
 }
 GameManager::GameManager(sf::RenderWindow* win)
 {
 	window = win;
 	started = false;
 	ended = false;
+	GODeleted = false;
+	UIDeleted = false;
 }
 GameManager::~GameManager()
 {
 	GOList.clear();
 	UIList.clear();
-	int a = 0;
 }
 
 void GameManager::Start()
@@ -36,29 +39,41 @@ bool GameManager::HasEnded()
 void GameManager::AddGameObject(std::shared_ptr<GameObject> obj)
 {	GOList.push_back(obj);	}
 void GameManager::RemoveGameObject(int index)
-{	GOList.erase(GOList.begin() + index);	}
+{
+	GOList.erase(GOList.begin() + index);
+	GODeleted = true;
+}
 void GameManager::AddUIObject(std::shared_ptr<UIObject> obj)
 {	UIList.push_back(obj);	}
 void GameManager::RemoveUIObject(int index)
-{	UIList.erase(UIList.begin() + index);	}
+{
+	UIList.erase(UIList.begin() + index);
+	UIDeleted = true;
+}
 
 void GameManager::Update()
 {
 	float deltaTime = clock.restart().asSeconds();
 
-	for (auto it = UIList.begin(); it != UIList.end(); ++it) {
+	for (auto it = UIList.begin(); it != UIList.end(); ) {
 		int index = std::distance(UIList.begin(), it);
 		UIList.at(index)->Update(deltaTime);
-		if (UIList.at(index)->GetToBeDeleted())
-		{	it = UIList.erase(it);	}
+		if (UIDeleted)
+		{
+			it = UIList.begin() + index;
+			UIDeleted = false;
+		}
 		else
 		{	++it;	}
 	}
 	for (auto it = GOList.begin(); it != GOList.end(); ) {
 		int index = std::distance(GOList.begin(), it);
 		GOList.at(index)->Update(deltaTime);
-		if (GOList.at(index)->GetToBeDeleted())
-		{	it = GOList.erase(it);	}
+		if (GODeleted)
+		{
+			it = GOList.begin() + index;
+			GODeleted = false;
+		}
 		else
 		{	++it;	}
 	}
@@ -81,10 +96,10 @@ std::vector<GameObject*> GameManager::GetCollisions(GameObject* obj)
 
 	for (auto it = GOList.begin(); it != GOList.end(); ++it) {
 		int index = std::distance(GOList.begin(), it);
-		if (!GOList.at(index)->HasCollision() || GOList.at(index).get() == obj)
+ 		if (!GOList.at(index)->HasCollision() || GOList.at(index).get() == obj)
 		{	continue;	}
 		if (GOList.at(index)->Collide(obj))
-		{	collisions.push_back(obj);	}
+		{	collisions.push_back(GOList.at(index).get());	}
 	}
 
 	return collisions;

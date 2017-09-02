@@ -7,9 +7,8 @@ PlayerPaddle::PlayerPaddle()
 	leftKey = sf::Keyboard::A;
 	rightKey = sf::Keyboard::D;
 }
-PlayerPaddle::PlayerPaddle(sf::RenderWindow* win, float X, float Y, float W, float H, int pID, bool isVert)
-	: Paddle(win,X,Y,W,H,pID,isVert),
-	  GameObject(win,X,Y,W,H,true)
+PlayerPaddle::PlayerPaddle(sf::RenderWindow* win, GameManager* man, float X, float Y, float W, float H, int pID, bool isVert)
+	: Paddle(win,man,X,Y,W,H,pID,isVert)
 {
 	if (pID == 0)
 	{
@@ -26,9 +25,8 @@ PlayerPaddle::PlayerPaddle(sf::RenderWindow* win, float X, float Y, float W, flo
 		rightKey = sf::Keyboard::Right;
 	}
 }
-PlayerPaddle::PlayerPaddle(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, int pID, bool isVert)
-	: Paddle(win,pos,W,H,pID,isVert),
-	  GameObject(win,pos,W,H,true)
+PlayerPaddle::PlayerPaddle(sf::RenderWindow* win, GameManager* man, sf::Vector2f pos, float W, float H, int pID, bool isVert)
+	: Paddle(win,man,pos,W,H,pID,isVert)
 {
 	if (pID == 0)
 	{
@@ -80,5 +78,5 @@ void PlayerPaddle::Update(float deltaTime)
 {
 	this->ReadControls();
 
-	//Paddle::Update(deltaTime);
+	Paddle::Update(deltaTime);
 }

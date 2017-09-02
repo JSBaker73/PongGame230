@@ -9,8 +9,8 @@ UIObject::UIObject()
 
 	width = 0;
 	height = 0;
+	visible = true;
 	clickable = false;
-	toBeDeleted = false;
 }
 UIObject::UIObject(sf::RenderWindow* win, float X, float Y, float W, float H)
 {
@@ -21,8 +21,8 @@ UIObject::UIObject(sf::RenderWindow* win, float X, float Y, float W, float H)
 
 	width = W;
 	height = H;
+	visible = true;
 	clickable = false;
-	toBeDeleted = false;
 }
 UIObject::UIObject(sf::RenderWindow* win, sf::Vector2f pos, float W, float H)
 {
@@ -33,8 +33,8 @@ UIObject::UIObject(sf::RenderWindow* win, sf::Vector2f pos, float W, float H)
 
 	width = W;
 	height = H;
+	visible = true;
 	clickable = false;
-	toBeDeleted = false;
 }
 UIObject::~UIObject()
 {}
@@ -46,20 +46,19 @@ void UIObject::SetPosition(sf::Vector2f newPos)
 sf::Vector2f UIObject::GetAnchor()
 {	return anchor;	}
 void UIObject::SetAnchor(sf::Vector2f newAnc)
-{
-	position -= anchor;
-	anchor = newAnc;
-	position += anchor;
-}
+{	anchor = newAnc;	}
 
 float UIObject::GetWidth()
 {	return width;	}
 float UIObject::GetHeight()
 {	return height;	}
+bool UIObject::GetVisible()
+{	return visible;	}
+void UIObject::SetVisible(bool isVisible)
+{	this->visible = isVisible;	}
 bool UIObject::GetClickable()
 {	return clickable;	}
-bool UIObject::GetToBeDeleted()
-{	return toBeDeleted;	}
+
 sf::FloatRect UIObject::GetRect(UIObject* obj)
 {
 	float left = obj->position.x - obj->anchor.x;
@@ -69,6 +68,3 @@ sf::FloatRect UIObject::GetRect(UIObject* obj)
 }
 bool UIObject::ContainsPoint(sf::Vector2f point)
 {	return UIObject::GetRect(this).contains(point);	}
-
-void UIObject::Delete()
-{	toBeDeleted = true;	}

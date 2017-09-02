@@ -21,7 +21,9 @@ AppState* MenuState::UpdateState(sf::Event event)
 			if (uiObj == dynamic_cast<MenuManager*>(GM.get())->GetStart1())
 			{	return new PongState(window, 0);	}
 			else if (uiObj == dynamic_cast<MenuManager*>(GM.get())->GetStart2())
-			{	return new PongState(window, 0);	}
+			{	return new PongState(window, 1);	}
+			else if (uiObj == dynamic_cast<MenuManager*>(GM.get())->GetStart3())
+			{	return new PongState(window, 2);	}
 			else if (uiObj == dynamic_cast<MenuManager*>(GM.get())->GetExit())
 			{
 				window->close();
@@ -34,8 +36,6 @@ AppState* MenuState::UpdateState(sf::Event event)
 }
 
 void MenuState::Update()
-{
-	//GM->Update();
-}
+{}
 void MenuState::Draw()
 {	GM->Draw();	}

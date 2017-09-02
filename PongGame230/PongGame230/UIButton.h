@@ -3,7 +3,7 @@
 #include <SFML\Graphics\RectangleShape.hpp>
 #include <SFML\Graphics\Text.hpp>
 #include "UIObject.h"
-class UIButton : virtual public UIObject
+class UIButton : public UIObject
 {
 protected:
 	sf::RectangleShape button;
@@ -21,6 +21,5 @@ public:
 
 	virtual void Update(float deltaTime);
 	virtual void Draw();
-	virtual void Delete();
 };
 

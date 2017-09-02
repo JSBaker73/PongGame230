@@ -14,8 +14,8 @@ protected:
 
 	float width;
 	float height;
+	bool visible;
 	bool clickable;
-	bool toBeDeleted;
 public:
 	UIObject();
 	UIObject(sf::RenderWindow* win, float X, float Y, float W, float H);
@@ -29,14 +29,14 @@ public:
 
 	float GetWidth();
 	float GetHeight();
+	bool GetVisible();
+	void SetVisible(bool isVisible);
 	bool GetClickable();
-	bool GetToBeDeleted();
 
 	static sf::FloatRect GetRect(UIObject* obj);
 	virtual bool ContainsPoint(sf::Vector2f point);
 
 	virtual void Update(float deltaTime) = 0;
 	virtual void Draw() = 0;
-	virtual void Delete();
 };
 

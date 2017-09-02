@@ -9,6 +9,7 @@
 #include <vld.h>
 #include <iostream>
 #include <memory>
+#include <ctime>
 #include "MenuState.h"
 
 /*
@@ -27,9 +28,12 @@ int main()
 	/*
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF |
 		_CRTDBG_LEAK_CHECK_DF);
-		*/
+	*/
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+	// Seed Random
+	srand((unsigned)time(NULL));
+
+	sf::RenderWindow window(sf::VideoMode(800, 600), "JS Baker's Pong");
 
 	std::unique_ptr<AppState> currentState(new MenuState(&window));
 	currentState->Initialize();

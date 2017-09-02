@@ -5,7 +5,7 @@
 
 class PongState;
 
-class MenuState : virtual public AppState
+class MenuState : public AppState
 {
 public:
 	MenuState();

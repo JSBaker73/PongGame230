@@ -57,6 +57,9 @@
     <ClCompile Include="PongState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UILabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PongState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UILabel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

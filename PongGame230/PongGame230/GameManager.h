@@ -21,6 +21,8 @@ protected:
 
 	bool started;
 	bool ended;
+	bool GODeleted;
+	bool UIDeleted;
 public:
 	GameManager();
 	GameManager(sf::RenderWindow* win);
@@ -28,6 +30,7 @@ public:
 
 	virtual void Initialize() = 0;
 	virtual void Start();
+	virtual void Stop() = 0;
 	virtual void End();
 
 	bool HasStarted();

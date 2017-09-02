@@ -28,7 +28,8 @@ UIButton::UIButton(sf::RenderWindow* win, float X, float Y, float W, float H, st
 	label.setStyle(sf::Text::Regular);
 	label.setCharacterSize(40);
 	label.setFillColor(sf::Color::Black);
-	label.setPosition(sf::Vector2f(X, Y));
+	label.setPosition(sf::Vector2f(X+W/2, Y+H/4));
+	label.setOrigin(label.getLocalBounds().width/2,label.getLocalBounds().height/2);
 }
 UIButton::UIButton(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, std::string text)
 	: UIObject(win,pos,W,H)
@@ -49,9 +50,7 @@ UIButton::UIButton(sf::RenderWindow* win, sf::Vector2f pos, float W, float H, st
 	label.setPosition(pos);
 }
 UIButton::~UIButton()
-{
-	int a = 0;
-}
+{}
 
 void UIButton::SetPosition(sf::Vector2f newPos)
 {
@@ -61,21 +60,16 @@ void UIButton::SetPosition(sf::Vector2f newPos)
 }
 void UIButton::SetAnchor(sf::Vector2f newAnc)
 {
+	sf::Vector2f oldAnch = button.getOrigin();
 	UIObject::SetAnchor(newAnc);
 	button.setOrigin(newAnc);
-	label.setOrigin(newAnc);
+	label.setPosition(label.getPosition() + (oldAnch - newAnc));
 }
 
 void UIButton::Update(float deltaTime)
-{
-
-}
+{}
 void UIButton::Draw()
 {
 	window->draw(button);
 	window->draw(label);
-}
-void UIButton::Delete()
-{
-	UIObject::Delete();
 }

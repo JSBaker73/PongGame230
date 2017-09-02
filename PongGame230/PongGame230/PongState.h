@@ -11,11 +11,12 @@ enum class GameMode
 	TVT
 };
 
-class PongState : virtual public AppState
+class PongState : public AppState
 {
 public:
 	PongState();
 	PongState(sf::RenderWindow* win, int mode);
+	PongState(sf::RenderWindow* win, GameMode mode);
 	~PongState();
 
 	GameMode GetGameMode();
