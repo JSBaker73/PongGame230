@@ -79,6 +79,8 @@ void Ball::Hit(GameObject* other, sf::FloatRect* rect)
 		}
 		else if (oldPosition.x > rect->left + rect->width && position.x <= rect->left + rect->width)
 		{
+			delete rect;
+
 			rect = new sf::FloatRect(GameObject::GetRect(other));
 			Bounce(false, false, sf::Vector2f(rect->left + rect->width, -1));
 			other->Hit(this, NULL);
@@ -86,12 +88,16 @@ void Ball::Hit(GameObject* other, sf::FloatRect* rect)
 
 		if (oldPosition.y < rect->top && position.y >= rect->top)
 		{
+			delete rect;
+
 			rect = new sf::FloatRect(GameObject::GetRect(other));
 			Bounce(true, true, sf::Vector2f(-1, rect->top));
 			other->Hit(this, NULL);
 		}
 		else if (oldPosition.y > rect->top + rect->height && position.y <= rect->top + rect->height)
 		{
+			delete rect;
+
 			rect = new sf::FloatRect(GameObject::GetRect(other));
 			Bounce(true, false, sf::Vector2f(-1, rect->top + rect->height));
 			other->Hit(this, NULL);
@@ -100,12 +106,16 @@ void Ball::Hit(GameObject* other, sf::FloatRect* rect)
 	
 	if (oldPosition.y < rect->top && position.y >= rect->top)
 	{
+		delete rect;
+
 		rect = new sf::FloatRect(GameObject::GetRect(other));
 		Bounce(true, true, sf::Vector2f(-1, rect->top));
 		other->Hit(this, NULL);
 	}
 	else if (oldPosition.y > rect->top + rect->height && position.y <= rect->top + rect->height)
 	{
+		delete rect;
+
 		rect = new sf::FloatRect(GameObject::GetRect(other));
 		Bounce(true, false, sf::Vector2f(-1, rect->top + rect->height));
 		other->Hit(this, NULL);

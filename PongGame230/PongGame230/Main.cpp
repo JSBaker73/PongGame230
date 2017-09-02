@@ -6,13 +6,12 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Main.hpp>
 
-#include <vld.h>
 #include <iostream>
 #include <memory>
 #include <ctime>
 #include "MenuState.h"
 
-/*
+
 #define _CRTDBG_MAP_ALLOC
 #define _CRTDBG_MAP_ALLOC_NEW
 #ifdef _DEBUG
@@ -21,14 +20,13 @@
 		#define new DBG_NEW
 	#endif
 #endif
-*/
+
 
 int main()
 {
-	/*
+	
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF |
 		_CRTDBG_LEAK_CHECK_DF);
-	*/
 
 	// Seed Random
 	srand((unsigned)time(NULL));
@@ -68,6 +66,6 @@ int main()
 		window.display();
 	}
 	currentState.reset();
-//	_CrtDumpMemoryLeaks();
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
